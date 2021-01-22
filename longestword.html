@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function longestString(string) {
+        let dem = 0
+        let vitri = 0
+        let dem_moi = 0  
+        for (let i= 0 ; i < string.length ; i ++) {
+            if (string[i] != ' ') {dem_moi ++}
+            else {
+                if (dem < dem_moi) {dem = dem_moi;vitri = i}
+                else {dem_moi = 0}
+            }
+        }
+        // return string[vitri vitri+dem]
+        let result = '' 
+        for (let j = 0; j <dem; j++) {
+            result += string[vitri + j]
+        }
+        return result
+    }
+    console.log(longestString('hhhg gkkkkk gggggggggg'));
+</script>
+</html>
