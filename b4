@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuid.min.js" integrity="sha512-UNM1njAgOFUa74Z0bADwAq8gbTcqZC8Ej4xPSzpnh0l6KMevwvkBvbldF9uR++qKeJ+MOZHRjV1HZjoRvjDfNQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    class music {
+    id;
+    song;
+    singer;
+    artist;
+    country;
+
+    constructor (song,singer,artist,country) {
+        this.song = song;
+        this.singer = singer;
+        this.artist = artist;
+        this.country = country;
+        this.id = uuid.v4()
+    }
+}
+
+class vpop extends music {
+    rank;   
+    
+    constructor(song,singer,artist,country,rank) {
+        super(song,singer,artist,country);
+        this.rank = rank
+    }
+    
+}
+
+class ukus extends music {
+    rank;
+
+    constructor(song,singer,artist,country,rank) {
+        super(song,singer,artist,country);
+        this.rank = rank
+    }
+}
+
+class kpop extends music {
+    rank;
+
+    constructor(song,singer,artist,country,rank) {
+        super(song,singer,artist,country);
+        this.rank = rank
+    }
+}
+
+let music2 = new vpop ('e của ngày hôm qua','sơn tùng','nhạc sĩ','vN',2);
+let music1 = new vpop ('chúng ta của hiện tại','sơn tùng','nhạc sĩ','viet nam',1);
+// console.log(music1);
+// console.log(music2);
+
+class library {
+    id;
+    owner;
+    allmusic;
+
+    constructor(owner) {
+        this.owner = owner;
+        this.allmusic = [];
+        this.id = uuid.v4()
+    }
+    
+
+    views () {
+        console.log(this.allmusic);
+    }
+
+    viewsong () {
+        // console.log(this.allmusic)
+        for(let songname of this.allmusic) {
+            console.log(songname.song)
+        }
+    }
+
+    add (data) {
+        if(data instanceof music) {
+            this.allmusic.push(data);
+        }
+    }
+
+    delete (id) {
+        let index = this.allmusic.findIndex(item => item.id === id);
+        if (index > -1) this.allmusic.splice(index,1)
+    }
+
+    update (id,data) {
+        for (let song of this.allmusic) {
+            if(song.id === id) {
+                song.update(data);
+                break
+            }
+        }
+    }
+
+    viewrank () {
+        for(let songname of this.allmusic) {
+            console.log(songname.song)
+            console.log(songname.rank);
+        }
+    }
+}
+
+let library1 = new library('tung');
+library1.add(music1)
+library1.add(music2) 
+library1.viewrank()
+
+</script>
+</html>
